@@ -1,6 +1,6 @@
 FROM python:3.13.2-alpine3.21@sha256:323a717dc4a010fee21e3f1aac738ee10bb485de4e7593ce242b36ee48d6b352
-ENV USER=template-container-python
-ENV GROUPNAME=$USER
+ENV USERNAME=template-container-python
+ENV GROUPNAME=$USERNAME
 ENV UID=911
 ENV GID=911
 # s6-overlay
@@ -16,7 +16,7 @@ RUN echo "$(cat s6-overlay-x86_64.tar.xz.sha256)" | sha256sum -c - \
     && tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 COPY s6-rc.d/ /etc/s6-overlay/s6-rc.d/
 # uv and project
-WORKDIR /opt/${USER}
+WORKDIR /opt/${USERNAME}
 RUN apk --update-cache add uv \
     && addgroup \
     --gid "$GID" \
@@ -28,9 +28,9 @@ RUN apk --update-cache add uv \
     --ingroup "$GROUPNAME" \
     --no-create-home \
     --uid "$UID" \
-    $USER
-COPY init.sh init.sh
-COPY main.py main.py
-COPY pyproject.toml pyproject.toml
+    $USERNAME
+COPY --chown=${UID}:${GID} init.sh init.sh
+COPY --chown=${UID}:${GID} main.py main.py
+COPY --chown=${UID}:${GID} pyproject.toml pyproject.toml
 ENTRYPOINT ["/init"]
 LABEL org.opencontainers.image.authors="MattKobayashi <matthew@kobayashi.au>"
