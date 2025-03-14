@@ -17,23 +17,19 @@ RUN echo "$(cat s6-overlay-x86_64.tar.xz.sha256)" | sha256sum -c - \
 COPY s6-rc.d/ /etc/s6-overlay/s6-rc.d/
 # uv and project
 WORKDIR /opt/${USERNAME}
-RUN apk \
-    --update-cache \
-    add uv \
+RUN apk --update-cache add uv \
     && addgroup \
-    --gid "$GID" \
-    "$GROUPNAME" \
+      --gid "$GID" \
+      "$GROUPNAME" \
     && adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "$(pwd)" \
-    --ingroup "$GROUPNAME" \
-    --no-create-home \
-    --uid "$UID" \
-    $USERNAME \
-    && chown \
-    --recursive \
-    /opt/${USERNAME}
+      --disabled-password \
+      --gecos "" \
+      --home "$(pwd)" \
+      --ingroup "$GROUPNAME" \
+      --no-create-home \
+      --uid "$UID" \
+      $USERNAME \
+    && chown -R /opt/${USERNAME}
 COPY --chmod=755 --chown=${UID}:${GID} init.sh init.sh
 COPY --chmod=644 --chown=${UID}:${GID} main.py main.py
 COPY --chmod=644 --chown=${UID}:${GID} pyproject.toml pyproject.toml
