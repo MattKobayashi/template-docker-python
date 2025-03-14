@@ -29,8 +29,8 @@ RUN apk --update-cache add uv \
     --no-create-home \
     --uid "$UID" \
     $USERNAME
-COPY --chown=${UID}:${GID} init.sh init.sh
-COPY --chown=${UID}:${GID} main.py main.py
-COPY --chown=${UID}:${GID} pyproject.toml pyproject.toml
+COPY --chmod=755 --chown=${UID}:${GID} init.sh init.sh
+COPY --chmod=644 --chown=${UID}:${GID} main.py main.py
+COPY --chmod=644 --chown=${UID}:${GID} pyproject.toml pyproject.toml
 ENTRYPOINT ["/init"]
 LABEL org.opencontainers.image.authors="MattKobayashi <matthew@kobayashi.au>"
