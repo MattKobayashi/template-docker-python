@@ -1,5 +1,5 @@
 def main():
-    print("Hello from template-docker-python!")
+    print("Hello from template-container-python!")
 
 
 if __name__ == "__main__":
