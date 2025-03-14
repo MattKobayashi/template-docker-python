@@ -17,7 +17,7 @@ RUN echo "$(cat s6-overlay-x86_64.tar.xz.sha256)" | sha256sum -c - \
 COPY s6-rc.d/ /etc/s6-overlay/s6-rc.d/
 # uv and project
 WORKDIR /opt/${USERNAME}
-RUN apk --update-cache add uv \
+RUN apk --no-cache add uv \
     && addgroup \
       --gid "$GID" \
       "$GROUPNAME" \
