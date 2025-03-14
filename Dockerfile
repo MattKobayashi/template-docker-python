@@ -19,3 +19,4 @@ COPY init.sh init.sh
 COPY main.py main.py
 COPY pyproject.toml pyproject.toml
 ENTRYPOINT ["/init"]
+LABEL org.opencontainers.image.authors="MattKobayashi <matthew@kobayashi.au>"
