@@ -1,0 +1,3 @@
+#!/command/execlineb -P
+s6-setuidgid youruser
+/opt/template-docker-python/init.sh

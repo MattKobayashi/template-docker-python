@@ -1,17 +1,8 @@
 ---
-on:
-  release:
-    types:
-      - published
-  workflow_dispatch:
 env:
   REGISTRY: ghcr.io
   REPO_NAME: mattkobayashi
-  IMAGE_NAME: <changeme>
-name: Publish
-permissions:
-  contents: read
-  packages: write
+  IMAGE_NAME: template-docker-python
 jobs:
   publish:
     name: Publish container image
@@ -54,3 +45,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+name: Publish
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
