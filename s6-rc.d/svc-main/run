@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-# Service shell script goes here
+uv run python3 -u /opt/template-docker-python/main.py
