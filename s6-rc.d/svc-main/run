@@ -1,2 +1,2 @@
 #!/bin/sh
-exec s6-setuidgid template-docker-python uv run python3 -u /opt/template-docker-python/main.py
+exec s6-setuidgid template-container-python uv run python3 -u /opt/template-container-python/main.py
