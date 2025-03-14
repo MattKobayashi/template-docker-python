@@ -68,6 +68,7 @@ on:
       - main
     paths:
       - "**.py"
+      - "**.sh"
       - "**.toml"
       - "**.yaml"
       - "Dockerfile"
