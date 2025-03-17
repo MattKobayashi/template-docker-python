@@ -74,6 +74,7 @@ on:
       - "**.yaml"
       - "Dockerfile"
       - "requirements.txt"
+      - "s6-rc.d/**"
   workflow_dispatch:
 permissions:
   contents: read
